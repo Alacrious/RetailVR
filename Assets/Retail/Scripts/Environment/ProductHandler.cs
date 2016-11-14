@@ -3,14 +3,21 @@ using System.Collections;
 using Retail.Utils;
 using VRStandardAssets.Utils;
 using UnityEngine.SceneManagement;
+using Solutionario.Base;
+using Solutionario.User;
 
 namespace Retail {
-	public class ShowProductInfo : MonoBehaviour {
+	/**
+	 * Handle the hover and click events on the products
+	 * in the environment scene.
+	 */
+	public class ProductHandler : MonoBehaviour {
 
 		[SerializeField] private Retail.Utils.UIFader m_ProductInfoCanvas;
 		[SerializeField] private VRInteractiveItem m_InteractiveItem;
 		[SerializeField] private float m_TimeToHideProductInfo;
 		[SerializeField] private VRCameraFade m_CameraFade;
+		[SerializeField] private string m_ProductId;
 
 
 		private void OnEnable () {
@@ -40,21 +47,10 @@ namespace Retail {
 		}
 
 		private void HandleClick () {
-			StartCoroutine (LoadProductsScene ());
+			//TODO Sets the current product
+			UserData.Instance.CurrentProduct = Product.GetSomeProduct ();
+
+			StartCoroutine(SceneHandler.GetInstance().LoadScene (SceneUtils.SceneType.PRODUCTSSCENE, m_CameraFade));
 		}
-
-		private IEnumerator LoadProductsScene () {
-			if (m_CameraFade.IsFading)
-				yield break;
-			
-			// Wait for the screen to fade out.
-			yield return StartCoroutine (m_CameraFade.BeginFadeOut (true));
-
-			// Load the main menu by itself.
-			SceneManager.LoadScene("ProductsScene", LoadSceneMode.Single);
-			
-		}
-
-
 	}
 }
