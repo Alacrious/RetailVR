@@ -23,6 +23,7 @@ public class CartContentSetup : MonoBehaviour {
 		//Initialize the cart with first product in cart.
 		ArrayList products = UserCart.Instance.GetProducts ();
 
+
 		if (products!=null && products.Count > 0) {
 			Product p = (Product)products [0];
 			InitializeBackground (p);

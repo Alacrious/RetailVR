@@ -129,11 +129,11 @@ public class SwipeHandler : MonoBehaviour {
 
 	#if UNITY_EDITOR
 	private void OnGUI () {
-		if (GUI.Button (new Rect(10, 20, 50, 50), "Left")) {
+		if (GUI.Button (new Rect(10, 60, 50, 50), "Left")) {
 			HandleSwipe (VRInput.SwipeDirection.LEFT);
 		}
 
-		if (GUI.Button (new Rect(10, 60, 50, 50), "Right")) {
+		if (GUI.Button (new Rect(10, 120, 50, 50), "Right")) {
 			HandleSwipe (VRInput.SwipeDirection.RIGHT);
 		}
 	}

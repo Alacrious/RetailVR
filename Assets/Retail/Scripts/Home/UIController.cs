@@ -16,10 +16,6 @@ namespace Retail {
 		[SerializeField] private Reticle m_Reticle;
 		[SerializeField] private SelectionRadial m_Radial;
 
-		private void OnStart () {
-			m_Reticle.Show ();
-			m_Radial.Hide ();
-		}
 
 		private void OnEnable() {
 			m_InstructionsFader.OnFadeOutComplete += InstructionsFadeOutComplete;
@@ -48,6 +44,9 @@ namespace Retail {
 		 * with fading in of environments
 		 */
 		private IEnumerator Start() {
+			m_Reticle.Show ();
+			m_Radial.Hide ();
+
 			//Fade in current instructions.
 			yield return StartCoroutine (m_InstructionsFader.InteruptAndFadeIn ());
 		}
