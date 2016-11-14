@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using Solutionario.Base;
 using Solutionario.User;
 
-namespace Retail {
+namespace Retail.Environment {
 	/**
 	 * Handle the hover and click events on the products
 	 * in the environment scene.
@@ -47,10 +47,20 @@ namespace Retail {
 		}
 
 		private void HandleClick () {
-			//TODO Sets the current product
-			UserData.Instance.CurrentProduct = Product.GetSomeProduct ();
+			//TODO Sets the current product. Use product id
+			UserData userData = UserData.Instance;
+			userData.CurrentProduct = ((Product)(userData.CurrentEnvironment.GetProductList () [0]));
 
 			StartCoroutine(SceneHandler.GetInstance().LoadScene (SceneUtils.SceneType.PRODUCTSSCENE, m_CameraFade));
 		}
+
+		#if UNITY_EDITOR
+		private void OnGUI () {
+			if (GUI.Button (new Rect (10, 20, 50, 50), "Product")) {
+				HandleClick ();
+			}
+		}
+		#endif
+
 	}
 }

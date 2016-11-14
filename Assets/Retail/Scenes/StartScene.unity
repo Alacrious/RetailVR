@@ -108,7 +108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &74849186
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 74849185}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -221,8 +221,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 930481887}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!114 &102252417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +270,8 @@ MonoBehaviour:
   m_MenuFader: {fileID: 1626153158}
   m_EnvironmentCanvas: {fileID: 74849188}
   m_MenuCanvas: {fileID: 1626153159}
+  m_Reticle: {fileID: 1253917676}
+  m_Radial: {fileID: 1253917677}
 --- !u!4 &107863398
 Transform:
   m_ObjectHideFlags: 0
@@ -396,6 +398,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153607561}
+--- !u!114 &222798982 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11456534, guid: ccf8c8cc05aad7b40a8deb4f73296da4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253917675}
+  m_Script: {fileID: 11500000, guid: 31957ab02a8654b448736febf48c16e9, type: 3}
 --- !u!1 &278556425
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558e8c1f393d644449ca10590698075a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_VRInput: {fileID: 0}
+  m_VRInput: {fileID: 1031856434}
   m_InteractiveItem: {fileID: 278556430}
 --- !u!65 &278556428
 BoxCollider:
@@ -868,7 +876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &733771141
 Transform:
   m_ObjectHideFlags: 0
@@ -928,9 +936,14 @@ Transform:
   - {fileID: 2123181883}
   - {fileID: 107863398}
   - {fileID: 374433111}
-  - {fileID: 102252416}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1031856434 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11427250, guid: ccf8c8cc05aad7b40a8deb4f73296da4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253917675}
+  m_Script: {fileID: 11500000, guid: 8902ef04f323e444b98d2e4fd80a56ab, type: 3}
 --- !u!1 &1184988138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SceneToLoad: EnvironmentScene
-  m_CameraFade: {fileID: 0}
+  m_CameraFade: {fileID: 222798982}
   m_GazeClickedEntity: {fileID: 1184988145}
   m_EnvironmentToLoad: Country
 --- !u!114 &1184988145
@@ -1053,7 +1066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558e8c1f393d644449ca10590698075a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_VRInput: {fileID: 0}
+  m_VRInput: {fileID: 1031856434}
   m_InteractiveItem: {fileID: 1184988143}
 --- !u!114 &1184988146
 MonoBehaviour:
@@ -1125,6 +1138,18 @@ Prefab:
     - {fileID: 11451356, guid: ccf8c8cc05aad7b40a8deb4f73296da4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ccf8c8cc05aad7b40a8deb4f73296da4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1253917676 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11420606, guid: ccf8c8cc05aad7b40a8deb4f73296da4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253917675}
+  m_Script: {fileID: 11500000, guid: aff17147c9606014f8e8f74f255d466a, type: 3}
+--- !u!114 &1253917677 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11458036, guid: ccf8c8cc05aad7b40a8deb4f73296da4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253917675}
+  m_Script: {fileID: 11500000, guid: 03fb8390bc96a7f4cafebf5efc362f62, type: 3}
 --- !u!1 &1297418473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1307,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 6}
-  m_SizeDelta: {x: 465, y: 350}
+  m_SizeDelta: {x: 550, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1458884029
 GameObject:
@@ -1718,7 +1743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SceneToLoad: EnvironmentScene
-  m_CameraFade: {fileID: 0}
+  m_CameraFade: {fileID: 222798982}
   m_GazeClickedEntity: {fileID: 1698555080}
   m_EnvironmentToLoad: ModernFamily
 --- !u!114 &1698555080
@@ -1732,7 +1757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558e8c1f393d644449ca10590698075a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_VRInput: {fileID: 0}
+  m_VRInput: {fileID: 1031856434}
   m_InteractiveItem: {fileID: 1698555078}
 --- !u!114 &1698555081
 MonoBehaviour:
@@ -1856,7 +1881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558e8c1f393d644449ca10590698075a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_VRInput: {fileID: 0}
+  m_VRInput: {fileID: 1031856434}
   m_InteractiveItem: {fileID: 1751215455}
 --- !u!114 &1751215457
 MonoBehaviour:
@@ -1870,7 +1895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SceneToLoad: EnvironmentScene
-  m_CameraFade: {fileID: 0}
+  m_CameraFade: {fileID: 222798982}
   m_GazeClickedEntity: {fileID: 1751215456}
   m_EnvironmentToLoad: Apartment
 --- !u!114 &1751215458

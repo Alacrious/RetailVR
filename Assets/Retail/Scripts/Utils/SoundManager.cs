@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
 
-	public static SoundManager _instance = null;
+	private static SoundManager _instance = null;
 
 	void Awake () {
 		if (_instance != null && _instance != this) {

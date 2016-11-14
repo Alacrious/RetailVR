@@ -7,21 +7,28 @@ using VRStandardAssets.Utils;
 namespace Retail {
 	public class UIController : MonoBehaviour {
 
-		public Retail.Utils.UIFader m_InstructionsFader;
-		public Retail.Utils.UIFader m_EnvironmentsFader;
-		public GazeClicked m_StartButton;
+		[SerializeField] private Retail.Utils.UIFader m_InstructionsFader;
+		[SerializeField] private Retail.Utils.UIFader m_EnvironmentsFader;
+		[SerializeField] private GazeClicked m_StartButton;
 		[SerializeField] private Retail.Utils.UIFader m_MenuFader;
 		[SerializeField] private Canvas m_EnvironmentCanvas;
 		[SerializeField] private Canvas m_MenuCanvas;
+		[SerializeField] private Reticle m_Reticle;
+		[SerializeField] private SelectionRadial m_Radial;
 
-		public void OnEnable() {
+		private void OnStart () {
+			m_Reticle.Show ();
+			m_Radial.Hide ();
+		}
+
+		private void OnEnable() {
 			m_InstructionsFader.OnFadeOutComplete += InstructionsFadeOutComplete;
 			m_EnvironmentsFader.OnFadeOutComplete += EnvironmentsFadeOutComplete;
 			m_EnvironmentsFader.OnFadeInComplete += EnvironmentsFadeInComplete;
 			m_StartButton.EntityClicked += HandleStartButton;
 		}
 
-		public void OnDisable() {
+		private void OnDisable() {
 			m_InstructionsFader.OnFadeOutComplete -= InstructionsFadeOutComplete;
 			m_EnvironmentsFader.OnFadeOutComplete -= EnvironmentsFadeOutComplete;
 			m_EnvironmentsFader.OnFadeInComplete -= EnvironmentsFadeInComplete;

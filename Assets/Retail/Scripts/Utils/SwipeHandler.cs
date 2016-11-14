@@ -10,6 +10,9 @@ using Solutionario.User;
 public class SwipeHandler : MonoBehaviour {
 
 	public event Action<int> OnScrollComplete;
+	public event Action OnSwipeLeft;
+	public event Action OnSwipeRight;
+
 	public static int NUMBER_OF_EMPTY_ITEMS = 3;
 
 	[SerializeField] private ScrollRect m_ScrollRect;
@@ -82,8 +85,18 @@ public class SwipeHandler : MonoBehaviour {
 					ScrollUpItems ();
 				break;
 			case VRInput.SwipeDirection.LEFT:
+				if (OnSwipeLeft != null) {
+					m_SelectedItem = 1;
+					m_ContainerTransform.anchoredPosition = Vector2.zero;
+					OnSwipeLeft ();
+				}
 				break;
 			case VRInput.SwipeDirection.RIGHT:
+				if (OnSwipeRight != null) {
+					m_SelectedItem = 1;
+					m_ContainerTransform.anchoredPosition = Vector2.zero;
+					OnSwipeRight ();
+				}
 				break;
 			}
 		}
@@ -91,14 +104,14 @@ public class SwipeHandler : MonoBehaviour {
 
 	private void ScrollDownItems () {
 		scrollPosition = m_ContainerTransform.anchoredPosition + new Vector2 (0, m_ScrollHeight);
-		scrollPosition.y = Mathf.Clamp (scrollPosition.y, 0, 90);
+		scrollPosition.y = Mathf.Clamp (scrollPosition.y, 0, m_ScrollHeight * (GetItems () - 1));
 		scrolling = true;
 		m_SelectedItem += 1;
 	}
 
 	private void ScrollUpItems () {
 		scrollPosition = m_ContainerTransform.anchoredPosition - new Vector2 (0, m_ScrollHeight);
-		scrollPosition.y = Mathf.Clamp (scrollPosition.y, 0, 90);
+		scrollPosition.y = Mathf.Clamp (scrollPosition.y, 0, m_ScrollHeight * (GetItems () - 1));
 		scrolling = true;
 		m_SelectedItem -= 1;
 	}
@@ -111,6 +124,18 @@ public class SwipeHandler : MonoBehaviour {
 	private void HandleScrollComplete (int selectedItem) {
 		//Change the main sprite of the product to currently selected product's image
 		m_MainImage.sprite = UserData.Instance.CurrentProduct._Sprites[m_SelectedItem - 1];
+	}
+	#endif
+
+	#if UNITY_EDITOR
+	private void OnGUI () {
+		if (GUI.Button (new Rect(10, 20, 50, 50), "Left")) {
+			HandleSwipe (VRInput.SwipeDirection.LEFT);
+		}
+
+		if (GUI.Button (new Rect(10, 60, 50, 50), "Right")) {
+			HandleSwipe (VRInput.SwipeDirection.RIGHT);
+		}
 	}
 	#endif
 }

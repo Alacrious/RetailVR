@@ -24,17 +24,38 @@ public class ProductContentSetup : MonoBehaviour {
 	[SerializeField] private Text m_Origin;
 	[SerializeField] private Image m_LeftSprite;
 	[SerializeField] private Image m_RightSprite;
+	[SerializeField] private SwipeHandler m_SwipeHandler;
 
-
-	private void Start () {
-		//TODO Remove it .Testing purpose
-		UserData.Instance.CurrentProduct = Product.GetSomeProduct ();
-		InitializeBackground ();
-		InitializeProductImages ();
+	private void OnEnable () {
+		m_SwipeHandler.OnSwipeLeft += HandleSwipeLeft;
+		m_SwipeHandler.OnSwipeRight += HandleSwipeRight;
 	}
 
-	private void InitializeBackground () {
-		Product p = UserData.Instance.CurrentProduct;
+	private void OnDisable () {
+		m_SwipeHandler.OnSwipeLeft -= HandleSwipeLeft;
+		m_SwipeHandler.OnSwipeRight -= HandleSwipeRight;
+	}
+
+	private void Start () {
+		//TODO Remove to
+		UserData.Instance.CurrentEnvironment = Solutionario.Base.Environment.GetEnvironment ("Apartment");
+		UserData userData = UserData.Instance;
+		userData.CurrentProduct = ((Product)(userData.CurrentEnvironment.GetProductList () [0]));
+
+
+		RefreshContent ();
+	}
+
+	/**
+	 * Refreshes the content according to the current selected product.
+	 */
+	private void RefreshContent () {
+		Product product = UserData.Instance.CurrentProduct;
+		InitializeBackground (product);
+		InitializeProductImages (product);
+	}
+
+	private void InitializeBackground (Product p) {
 
 		m_SelectedSprite.sprite = p._Sprites [0];
 		m_ProductName.text = p._Name;
@@ -48,9 +69,11 @@ public class ProductContentSetup : MonoBehaviour {
 
 	}
 
-	private void InitializeProductImages () {
-		Product currentProduct = UserData.Instance.CurrentProduct;
-
+	private void InitializeProductImages (Product currentProduct) {
+		//Removes all the previous products
+		for(int i=m_ContentTransform.childCount-1; i>=0; i--) {
+			Destroy (m_ContentTransform.GetChild(i).gameObject);
+		}
 
 		for (int i=0; i<currentProduct._Sprites.Length; i++) {
 			GameObject go = Instantiate (m_Prefab) as GameObject;
@@ -66,5 +89,31 @@ public class ProductContentSetup : MonoBehaviour {
 			go.transform.SetParent (m_ContentTransform);
 		}
 	}
+
+
+	private void HandleSwipeLeft () {
+		//Get previous item in the environment and refresh the content
+		Environment env = UserData.Instance.CurrentEnvironment;
+		Product p = env.GetNextProduct (UserData.Instance.CurrentProduct);
+
+		if (p != null) {
+			UserData.Instance.CurrentProduct = p;
+
+			RefreshContent ();
+		}
+	}
+
+	private void HandleSwipeRight () {
+		//Get next item in the environment and refresh the content
+		Environment env = UserData.Instance.CurrentEnvironment;
+		Product p = env.GetPreviousProduct (UserData.Instance.CurrentProduct);
+
+		if (p != null) {
+			UserData.Instance.CurrentProduct = p;
+
+			RefreshContent ();
+		}
+	}
+
 
 }
