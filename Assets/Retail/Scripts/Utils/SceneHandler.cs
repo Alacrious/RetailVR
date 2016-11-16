@@ -4,6 +4,7 @@ using VRStandardAssets.Utils;
 using UnityEngine.SceneManagement;
 using Solutionario.User;
 
+
 namespace Retail.Utils {
 	public class SceneHandler : MonoBehaviour {
 
@@ -26,6 +27,12 @@ namespace Retail.Utils {
 
 		private void Start () {
 			UserData.Instance.StartSession ();
+		}
+
+		public void LoadScene ( SceneUtils.SceneType sceneType ) {
+			GameObject gameObject = GameObject.FindGameObjectWithTag ("MainCamera");
+			VRCameraFade cameraFade = gameObject.GetComponent<VRCameraFade> ();
+			StartCoroutine (LoadScene (sceneType, cameraFade));
 		}
 
 		public IEnumerator LoadScene (SceneUtils.SceneType sceneType, VRCameraFade cameraFade) {

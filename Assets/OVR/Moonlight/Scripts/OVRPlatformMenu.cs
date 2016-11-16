@@ -21,7 +21,8 @@ limitations under the License.
 
 using UnityEngine;
 using VR = UnityEngine.VR;
-using System.Collections;
+using UnityEngine.SceneManagement;
+using Retail.Utils;
 
 /// <summary>
 /// Shows the Oculus plaform UI.
@@ -257,7 +258,12 @@ public class OVRPlatformMenu : MonoBehaviour
 		else if ( action == eBackButtonAction.SHORT_PRESS )
 		{
 			ResetCursor();
-			ShowConfirmQuitMenu();
+
+			//Show quit menu on first scene
+			if(SceneManager.GetActiveScene ().buildIndex == 0)
+				ShowConfirmQuitMenu();
+			else // Else go to the previous scene
+				SceneHandler.GetInstance().LoadScene(LevelManager.PreviousSceneType);
 		}
 		else if ( action == eBackButtonAction.LONG_PRESS )
 		{

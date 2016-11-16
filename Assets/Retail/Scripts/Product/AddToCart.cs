@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using VRStandardAssets.Utils;
 using Solutionario.User;
-using Retail.Utils;
 
 public class AddToCart : MonoBehaviour {
 
