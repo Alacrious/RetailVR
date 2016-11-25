@@ -21,9 +21,13 @@ public class DigitHandler : MonoBehaviour {
 	}
 
 	private void HandleDigit () {
-		//TODO
-		//Negative values to delete or clear the text
-		m_Text.text += "" + m_Value;
+		//Clear the text
+		if(m_Value == -1) {
+			m_Text.text = "";
+		} else { // Append the number to the text
+			m_Text.text += "" + m_Value;	
+		}
+
 		UserNumber.Number = m_Text.text;
 	}
 }

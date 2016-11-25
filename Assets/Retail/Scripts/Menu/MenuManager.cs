@@ -48,4 +48,16 @@ public class MenuManager : MonoBehaviour {
 	private void Cart () {
 		StartCoroutine(SceneHandler.GetInstance().LoadScene (SceneUtils.SceneType.CARTSCENE, m_CameraFade));
 	}
+
+	#if UNITY_EDITOR
+	private void OnGUI () {
+		if (GUI.Button (new Rect (10, 60, 50, 50), "Home")) {
+			Home ();	
+		}
+
+		if (GUI.Button (new Rect (10, 120, 50, 50), "Back")) {
+			Back ();	
+		}
+	}
+	#endif
 }

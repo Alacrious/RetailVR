@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using Retail.Utils;
 using VRStandardAssets.Utils;
+using System.Collections.Generic;
 
 namespace Retail {
 	public class UIController : MonoBehaviour {
@@ -57,16 +58,21 @@ namespace Retail {
 		}
 
 		private void InstructionsFadeOutComplete() {
-			StartCoroutine (m_EnvironmentsFader.InteruptAndFadeIn ());
-			StartCoroutine (m_MenuFader.InteruptAndFadeIn ());
+			StartCoroutine (ShowEnvironmentAndMenu ());
+		}
+
+		private IEnumerator ShowEnvironmentAndMenu () {
+			m_EnvironmentCanvas.gameObject.SetActive (true);
+			m_MenuCanvas.gameObject.SetActive (true);
+			yield return StartCoroutine (m_EnvironmentsFader.InteruptAndFadeIn ());
+			yield return StartCoroutine (m_MenuFader.InteruptAndFadeIn ());
 		}
 
 		private void EnvironmentsFadeOutComplete() {
 		}
 
 		private void EnvironmentsFadeInComplete () {
-			m_EnvironmentCanvas.gameObject.SetActive (true);
-			m_MenuCanvas.gameObject.SetActive (true);
+
 		}
 	}
 }

@@ -16,7 +16,8 @@ PlayerSettings:
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenStyle: 0
   m_ShowUnitySplashScreen: 0
-  m_VirtualRealitySplashScreen: {fileID: 0}
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: fd654bd46be722444984f3be54b98b2e,
+    type: 3}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
@@ -561,5 +562,5 @@ PlayerSettings:
   tvOS::VR::enabledDevices: []
   cloudProjectId: 6015c12b-2ae2-4a91-bfbd-5c27ff12743f
   projectName: VRSamples
-  organizationId: rajawat
+  organizationId: solutionario
   cloudEnabled: 0
